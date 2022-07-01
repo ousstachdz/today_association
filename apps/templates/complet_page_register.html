@@ -1,0 +1,88 @@
+{% extends 'base.html'%} {% block content%}
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content flex-col lg:flex-row-reverse">
+    <div class="text-center lg:text-left">
+      <h1 class="text-5xl font-bold">Hello {{user.first_name}}!</h1>
+      <div class="py-6">
+        <ul class="steps steps-vertical">
+          <li data-content="✓" class="step step-neutral">
+            <p class="font-thin">
+              <span class="font-semibold">Step one:</span>
+              help people to know how you are.
+            </p>
+          </li>
+          <li data-content="✓" class="step step-neutral">
+            <p class="font-thin">
+              <span class="font-semibold">Step two:</span>
+              Tell us more about you.
+            </p>
+          </li>
+          <li data-content="?" class="step step-neutral">
+            <p class="font-thin">
+              <span class="font-semibold">Step three:</span>
+              we will like to see you.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ///////////////////////////////////// -->
+    <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+      <form method="post" enctype="multipart/form-data" class="card-body w-96">
+        {% csrf_token %}
+        <div class="avatar flex justify-center">
+          <div class="w-52 mask mask-squircle">
+            {% load static %}
+            <img
+              id="avatar_img"
+              alt="avatar"
+              src="{% static 'assets/avatar.jpg' %}"
+            />
+          </div>
+        </div>
+        <div class="form-control">
+          <div class="flex justify-center p-2">
+            <label class="btn btn-circle" for="img">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M11 11v-11h1v11h11v1h-11v11h-1v-11h-11v-1h11z"
+                />
+              </svg>
+              <input
+                id="img"
+                name="file"
+                type="file"
+                class="hidden"
+                accept="image/png, image/jpg, image/jpeg"
+              />
+            </label>
+          </div>
+        </div>
+        <div class="form-control">
+          <button type="submit" class="btn bg-green-600 text-white border-0">
+            Next
+          </button>
+        </div>
+        <div class="form-control">
+          <button
+            type="submit"
+            class="btn text-green-600 bg-white hover:text-white border-0"
+          >
+            Skip
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock%}

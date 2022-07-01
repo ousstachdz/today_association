@@ -2,13 +2,13 @@
 <div class="hero min-h-screen bg-base-200">
   <div class="hero-content flex-col lg:flex-row-reverse">
     <div class="text-center lg:text-left">
-      <h1 class="text-5xl font-bold">Hello !</h1>
+      <h1 class="text-5xl font-bold">Hello {{user.first_name}}!</h1>
       <div class="py-6">
         <ul class="steps steps-vertical">
-          <li data-content="?" class="step step-neutral">
+          <li data-content="✓" class="step step-neutral">
             <p class="font-thin">
               <span class="font-semibold">Step one:</span>
-              help us to know how you are.
+              help people to know how you are.
             </p>
           </li>
           <li data-content="?" class="step step-neutral">
@@ -26,70 +26,45 @@
         </ul>
       </div>
     </div>
+
+    <!-- ///////////////////////////////////// -->
     <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
       <form method="post" class="card-body w-96">
         {% csrf_token %}
-        <div class="form-control flex-row justify-between">
-          <div class="">
-            <label class="label">
-              <span class="label-text">Firstname</span>
-            </label>
-            <input
-              name="first_name"
-              type="text"
-              placeholder="email"
-              class="input rounded-lg border-gray-300 outline-none focus:border-green-500 w-36"
-            />
-          </div>
-          <div class="">
-            <label class="label">
-              <span class="label-text">Lastname</span>
-            </label>
-            <input
-              name="last_name"
-              type="text"
-              placeholder="text"
-              class="input rounded-lg border-gray-300 outline-none focus:border-green-500 w-36"
-            />
-          </div>
-        </div>
         <div class="form-control">
           <label class="label">
-            <span class="label-text">Email</span>
+            <span class="label-text">Birthday</span>
           </label>
           <input
-            name="email"
-            type="text"
+            name="birthday"
+            type="date"
             placeholder="email"
             class="input rounded-lg border-gray-300 outline-none focus:border-green-500"
           />
         </div>
         <div class="form-control">
           <label class="label">
-            <span class="label-text">Password</span>
+            <span class="label-text">Current Address</span>
           </label>
           <input
-            name="password"
-            type="password"
-            placeholder="password"
-            class="input rounded-lg border-gray-300 outline-none focus:border-green-500"
-          />
-        </div>
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Confirm Password</span>
-          </label>
-          <input
-            name="cpassword"
-            type="password"
-            placeholder="Confirm password"
+            name="address"
+            type="text"
+            placeholder="City ..."
             class="input rounded-lg border-gray-300 outline-none focus:border-green-500"
           />
         </div>
         <div class="form-control mt-6">
           <button type="submit" class="btn bg-green-600 text-white border-0">
-            Sign Up
+            Next
           </button>
+        </div>
+        <div class="form-control">
+          <a
+            href="url 'complet_page_register'"
+            class="btn text-green-600 bg-white hover:text-white border-0"
+          >
+            Skip
+          </a>
         </div>
       </form>
     </div>
