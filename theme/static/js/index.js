@@ -1,12 +1,3 @@
-// const body = document.getElementById("main");
-// function switch_theme() {
-//   if (body.classList.contains("dark")) {
-//     body.classList.remove("dark");
-//   } else {
-//     body.classList.add("dark");
-//   }
-// }
-
 function changing_about_bg() {
   let bg_about = document.getElementById("bg_about");
   if (bg_about) {
@@ -20,10 +11,34 @@ function changing_about_bg() {
 changing_about_bg();
 
 const img = document.getElementById("img");
-const avatar = document.getElementById("avatar_img");
-img.onchange = (evt) => {
-  const [file] = img.files;
-  if (file) {
-    avatar.src = URL.createObjectURL(file);
-  }
-};
+const preview = document.getElementById("preview_img");
+if (img != null) {
+  img.onchange = (evt) => {
+    const [file] = img.files;
+    if (file) {
+      preview.src = URL.createObjectURL(file);
+    }
+  };
+}
+
+const type = document.getElementById("type");
+if (type != null) {
+  type.onchange = (evt) => {
+    console.log(evt.target.value);
+    const price = document.getElementById("price");
+    const enddate = document.getElementById("enddate");
+
+    if (evt.target.value == "Post") {
+      price.classList.add("hidden");
+      enddate.classList.add("hidden");
+    }
+    if (evt.target.value == "Trip") {
+      price.classList.remove("hidden");
+      enddate.classList.add("hidden");
+    }
+    if (evt.target.value == "Event") {
+      price.classList.add("hidden");
+      enddate.classList.remove("hidden");
+    }
+  };
+}

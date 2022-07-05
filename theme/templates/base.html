@@ -102,6 +102,13 @@
                   class="p-4 font-semibold hover:text-green-600 duration-200 ease-in"
                   >Postes</a
                 >
+                {% if user.is_admin %}
+                <a
+                  href="{% url 'add_post' %}"
+                  class="p-4 font-semibold hover:text-green-600 duration-200 ease-in"
+                  >Add Post</a
+                >
+                {% endif %}
               </div>
               <button
                 @click="open = !open"

@@ -1,0 +1,90 @@
+<div class="flex justify-center p-2">
+  <label class="btn btn-circle" for="img">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-6 w-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M11 11v-11h1v11h11v1h-11v11h-1v-11h-11v-1h11z"
+      />
+    </svg>
+    <input
+      id="img"
+      name="file"
+      type="file"
+      class="hidden"
+      accept="image/png, image/jpg, image/jpeg"
+    />
+  </label>
+</div>
+
+///////////////////////////////
+<select id="type" class="select w-full max-w-xs border-gray-300">
+  <option disabled selected>Type</option>
+  <option value="New Post">Post</option>
+  <option value="New Event">Event</option>
+  <option value="New Trip">Trip</option>
+</select>
+
+<div class="form-control w-full max-w-xs">
+  <label class="label">
+    <span class="label-text">Title</span>
+  </label>
+  <input
+    id="title"
+    type="text"
+    placeholder="Type here"
+    class="input rounded-lg border-gray-300 outline-none focus:border-green-500 w-80"
+  />
+</div>
+
+<div id="price" class="form-control w-full max-w-xs">
+  <label class="label">
+    <span class="label-text">Price</span>
+  </label>
+  <input
+    type="text"
+    placeholder="Type here"
+    class="input rounded-lg border-gray-300 outline-none focus:border-green-500 w-80"
+  />
+</div>
+
+<div class="form-control w-full max-w-xs">
+  <label class="label">
+    <span class="label-text">Date</span>
+  </label>
+  <input
+    id="date"
+    type="date"
+    placeholder="Type here"
+    class="input rounded-lg border-gray-300 outline-none focus:border-green-500 w-80"
+  />
+</div>
+
+<div id="enddate" class="form-control w-full max-w-xs">
+  <label class="label">
+    <span class="label-text">End Date</span>
+  </label>
+  <input
+    type="date"
+    placeholder="Type here"
+    class="input rounded-lg border-gray-300 outline-none focus:border-green-500 w-80"
+  />
+</div>
+
+<div class="form-control">
+  <label class="label">
+    <span class="label-text">Content</span>
+  </label>
+  <textarea
+    id="content"
+    class="input rounded-lg border-gray-300 outline-none focus:border-green-500"
+    placeholder="Type here"
+  ></textarea>
+</div>

@@ -1,5 +1,4 @@
-from datetime import date
-from turtle import title
+from importlib.resources import contents
 from django.db import models
 from django.contrib.auth.models import  AbstractUser
 
@@ -20,17 +19,15 @@ class Poster(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
-    owner = models.ForeignKey(TodayUser,on_delete=models.CASCADE)
-    
-class Event(Poster):
-    start_date = models.DateField()
-    end_date = models.DateField()
+    type = models.CharField(max_length=10)
+    date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+    price = models.PositiveIntegerField( null=True, blank=True)
+    img = models.ImageField(upload_to='./media/postes' ,null=True, blank=True)
 
-class Trip(Poster):
-    date = models.DateField()
-    price = models.PositiveIntegerField()
+class Comment(models.Model):
+    owner = models.ForeignKey(TodayUser,on_delete=models.CASCADE, default=1)
+    post =  models.ForeignKey(Poster,on_delete=models.CASCADE, default=1)
+    content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
     
-class Picture(models.Model):
-    img = models.ImageField(upload_to='./media/postes')
-    poster = models.ForeignKey(Poster,on_delete= models.CASCADE)
-

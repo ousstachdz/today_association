@@ -18,8 +18,10 @@ urlpatterns = [
 
     #admin urls
     path('dashbord',views.dashbord,name='dashbord'),
+    path('add_post',views.add_post,name='add_post'),
 
     # numbers urls
     path('profil',views.profil,name='profil'),
     path('postes',views.postes,name='postes'),
+    path('post_details/<str:pk>',views.post_details,name='post_details'),
 ]

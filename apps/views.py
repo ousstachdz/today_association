@@ -1,8 +1,6 @@
-import os
-from pathlib import Path
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render,reverse
 from django.contrib.auth import authenticate, login as login_user, logout as logout_user
-from apps.models import Poster, TodayUser
+from apps.models import Poster, TodayUser,Comment
 
 
 def index(request):
@@ -99,9 +97,7 @@ def complet_page_register(request):
     if request.POST:
         user = TodayUser.objects.get(pk=request.user.id)
         if(user):
-            print(request.FILES['file'])
             user.img = request.FILES['file']
-
             user.save()
             return redirect('profil')
     return  render(request, 'complet_page_register.html')
@@ -114,8 +110,52 @@ def logout(request):
         
 def postes(request):
     if request.user.is_authenticated:
-        postes = Poster.objects.all()
-        data = {'postes':postes}
-        return render(request=request, template_name='postes.html',context = data)
+        if request.POST :
+            user = TodayUser.objects.get(email = request.user)
+            post = Poster.objects.get(id = request.POST['post_id'])
+            content = request.POST['comment']
+            comment =Comment.objects.create(owner=user, post=post, content=content)
+            comment.save()
+            return redirect(reverse('post_details',kwargs={'pk':str(request.POST['post_id'])}))
+        else:
+            postes = Poster.objects.all()
+            comments = Comment.objects.all()
+            data = {'postes':postes, 'comments':comments}
+            return render(request=request, template_name='postes.html',context = data)
+    return redirect('index')
+
+def post_details(request,pk):
+    post = Poster.objects.get(id = pk)
+    comments = Comment.objects.all().filter(post = post)
+    data = {'post':post, 'comments':comments}
+    if request.POST :
+            user = TodayUser.objects.get(email = request.user)
+            post = Poster.objects.get(id = request.POST['post_id'])
+            content = request.POST['comment']
+            comment =Comment.objects.create(owner=user, post=post, content=content)
+            comment.save()
+    return render(request=request, template_name='post_details.html',context = data)
+
+
+def add_post(request):
+    if request.user.is_authenticated:
+        if request.POST :
+            post = Poster.objects.create()
+            print( request.POST)
+            post.title = request.POST['title']
+            post.type = request.POST['type']
+            post.content = request.POST['content']
+            if request.POST['price'] != '':
+                post.price = request.POST['price']
+            if request.POST['date'] != '':
+                post.date = request.POST['date']
+            if request.POST['enddate'] != '':
+                post.end_date = request.POST['enddate']
+            if request.FILES['file'] != '':
+                post.img = request.FILES['file']
+
+            post.save()
+            return redirect('postes')
+        return render(request=request, template_name='add_post.html')
     return redirect('index')
     
